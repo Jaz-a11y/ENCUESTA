@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Uñas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <h1>Jazmine Uñas</h1>
+        
+        <p>¿Te gusta pintarte las uñas?</p>
+        <button @click="respuesta = 'sí'">Sí</button>
+        <button @click="respuesta = 'no'">No</button>
+
+        <div v-if="respuesta === 'sí'">
+            <h1>So fantachi:</h1>
+
+            <label for="estilo">¿Estilo clásico o diseño?</label><hr>
+            <select v-model="estilo" id="estilo">
+                <option value="clásico">Clásico</option>
+                <option value="diseño">Diseño</option>
+            </select>
+
+            <label for="largo">¿Qué largo prefieres?</label>
+            <input type="number" v-model="largo" id="largo" min="9" /><hr>
+
+            
+            <label for="color">¿Cuál es tu color favorito?</label>
+            <input type="text" v-model="color" id="color" /><hr>
+
+            <button @click="guardarUñas">Guardar</button>
+        </div>
+
+        <div v-else-if="respuesta === 'no'">
+            <h1>¡Entendido! Tal vez prefieras otra forma de belleza.</h1>
+        </div>
+
+        <ul>
+            <li v-for="(uña, index) in listaUñas" :key="index">
+                Color: {{ uña.color }}, Estilo: {{ uña.estilo }}, Largo: {{ uña.largo }}
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <script src="script.js"></script>
+</body>
+</html>
